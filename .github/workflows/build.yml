@@ -53,10 +53,12 @@ jobs:
         run: echo "TAG_ANME=$(date +%Y%m%d)" >> $GITHUB_ENV
       - uses: rickstaa/action-create-tag@v1
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ env.TAG_ANME }}
           force_push_tag: true
       - uses: ncipollo/release-action@v1
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit: ${{ github.sha }}
           tag: ${{ env.TAG_ANME }}
           artifacts: "mipsel-linux-musl/*.trx"
